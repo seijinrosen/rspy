@@ -1,10 +1,13 @@
 use std::io::{self, BufRead, Write};
 
 pub fn input(prompt: &str) -> String {
-    print!("{}", prompt);
-    io::stdout().flush().unwrap();
-
+    input_inner_writer(io::stdout(), prompt);
     input_inner(io::stdin().lock())
+}
+
+fn input_inner_writer(mut writer: impl Write, prompt: &str) {
+    write!(&mut writer, "{}", prompt).unwrap();
+    writer.flush().unwrap();
 }
 
 fn input_inner(mut reader: impl BufRead) -> String {
@@ -17,6 +20,15 @@ fn input_inner(mut reader: impl BufRead) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn input_inner_writer_works() {
+        let prompt = "プロンプトメッセージ: ";
+        let mut output = Vec::new();
+        input_inner_writer(&mut output, prompt);
+        let result = String::from_utf8(output).unwrap();
+        assert_eq!(result, prompt);
+    }
 
     #[test]
     fn input_inner_works() {
