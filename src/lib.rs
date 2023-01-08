@@ -2,7 +2,7 @@ use std::io::{self, BufRead, Write};
 
 pub fn input(prompt: &str) -> String {
     input_inner_writer(io::stdout(), prompt);
-    input_inner(io::stdin().lock())
+    input_inner_reader(io::stdin().lock())
 }
 
 fn input_inner_writer(mut writer: impl Write, prompt: &str) {
@@ -10,7 +10,7 @@ fn input_inner_writer(mut writer: impl Write, prompt: &str) {
     writer.flush().unwrap();
 }
 
-fn input_inner(mut reader: impl BufRead) -> String {
+fn input_inner_reader(mut reader: impl BufRead) -> String {
     let mut buf = String::new();
     reader.read_line(&mut buf).unwrap();
     buf.pop();
@@ -31,11 +31,11 @@ mod tests {
     }
 
     #[test]
-    fn input_inner_works() {
+    fn input_inner_reader_works() {
         // https://stackoverflow.com/a/72187752
         // https://stackoverflow.com/a/28370712
         let user_input = b"I'm George\n";
-        let result = input_inner(&user_input[..]);
+        let result = input_inner_reader(&user_input[..]);
         assert_eq!(result, "I'm George");
     }
 }
