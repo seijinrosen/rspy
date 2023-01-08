@@ -1,16 +1,20 @@
-use std::io::{self, Write};
+use std::io::{self, BufRead, Write};
 
 pub fn input(prompt: &str) -> String {
-    print!("{}", prompt);
-    io::stdout().flush().unwrap();
-    let mut buf = String::new();
-    io::stdin().read_line(&mut buf).unwrap();
-    buf.pop();
-    buf
+    input_inner_writer(io::stdout(), prompt);
+    input_inner_reader(io::stdin().lock())
 }
 
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+fn input_inner_writer(mut writer: impl Write, prompt: &str) {
+    write!(&mut writer, "{}", prompt).unwrap();
+    writer.flush().unwrap();
+}
+
+fn input_inner_reader(mut reader: impl BufRead) -> String {
+    let mut buf = String::new();
+    reader.read_line(&mut buf).unwrap();
+    buf.pop();
+    buf
 }
 
 #[cfg(test)]
@@ -18,8 +22,20 @@ mod tests {
     use super::*;
 
     #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+    fn input_inner_writer_works() {
+        let prompt = "プロンプトメッセージ: ";
+        let mut output = Vec::new();
+        input_inner_writer(&mut output, prompt);
+        let result = String::from_utf8(output).unwrap();
+        assert_eq!(result, prompt);
+    }
+
+    #[test]
+    fn input_inner_reader_works() {
+        // https://stackoverflow.com/a/72187752
+        // https://stackoverflow.com/a/28370712
+        let user_input = b"I'm George\n";
+        let result = input_inner_reader(&user_input[..]);
+        assert_eq!(result, "I'm George");
     }
 }
