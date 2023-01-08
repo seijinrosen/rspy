@@ -3,3 +3,4 @@ cd rspy
 touch command-history.txt
 gh repo create
 touch .editorconfig
+touch cspell.json
