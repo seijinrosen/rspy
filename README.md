@@ -4,7 +4,12 @@ Python-like interface.
 
 ## Installation
 
-TODO: write later.
+Add this to your Cargo.toml:
+
+```toml
+[dependencies]
+rspy = "0"
+```
 
 ## Currently available
 
