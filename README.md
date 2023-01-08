@@ -1,6 +1,6 @@
 # rspy
 
-Python-like interface.
+Pythonic interface for Rust.
 
 [![Crates.io](https://img.shields.io/crates/v/rspy)](https://crates.io/crates/rspy)
 [![Crates.io](https://img.shields.io/crates/d/rspy)](https://crates.io/crates/rspy)
