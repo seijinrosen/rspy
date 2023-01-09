@@ -38,6 +38,7 @@ fn input_inner_reader(mut reader: impl BufRead) -> String {
 mod tests {
     use super::*;
 
+    use crate as rspy;
     use crate::string::{ASCII_LOWERCASE, ASCII_UPPERCASE};
 
     #[test]
@@ -68,5 +69,13 @@ mod tests {
     fn ascii_uppercase_exists() {
         let result = ASCII_UPPERCASE;
         assert_eq!(result, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    }
+
+    #[test]
+    #[ignore = "since this is for doctest"]
+    #[allow(unused_variables)]
+    fn input_doc_test() {
+        let user_input = rspy::input("type here: ");
+        let user_input = rspy::input("");
     }
 }
