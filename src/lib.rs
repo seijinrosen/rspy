@@ -1,3 +1,5 @@
+//! Pythonic interface for Rust.
+
 pub mod string;
 
 use std::io::{self, BufRead, Write};
