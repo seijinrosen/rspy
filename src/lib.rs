@@ -42,6 +42,8 @@ fn input_inner_reader(mut reader: impl BufRead) -> String {
 mod tests {
     use super::*;
 
+    use pretty_assertions::assert_eq;
+
     use crate as rspy;
     use crate::string::{ASCII_LOWERCASE, ASCII_UPPERCASE};
 
