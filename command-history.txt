@@ -4,3 +4,4 @@ touch command-history.txt
 gh repo create
 touch .editorconfig
 touch cspell.json
+cargo add --dev pretty_assertions
