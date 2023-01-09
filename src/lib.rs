@@ -2,6 +2,19 @@ pub mod string;
 
 use std::io::{self, BufRead, Write};
 
+/// `prompt` を表示して、ユーザーに入力を促します。入力された文字列は、変数に保存されることが期待されます。
+///
+/// # Examples
+///
+/// ```
+/// let user_input = rspy::input("type here: ");
+/// // "type here: " が端末に表示されます。
+/// // ユーザーが入力した文字列は、`user_input` に保存されます。
+///
+/// let user_input = rspy::input("");
+/// // Python とは異なり、引数は必須です。
+/// // `prompt` が空白で良い場合は、空文字列を渡してください。
+/// ```
 pub fn input(prompt: &str) -> String {
     input_inner_writer(io::stdout(), prompt);
     input_inner_reader(io::stdin().lock())
