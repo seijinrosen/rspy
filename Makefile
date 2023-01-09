@@ -1,6 +1,6 @@
 test:
 	cargo check
-	cargo test
+	cargo test -- --nocapture --color=always
 	cargo clippy
 	# cargo tarpaulin
 
