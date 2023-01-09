@@ -18,8 +18,12 @@ use std::io::{self, BufRead, Write};
 /// // `prompt` が空白で良い場合は、空文字列を渡してください。
 /// ```
 pub fn input(prompt: &str) -> String {
-    input_inner_writer(io::stdout(), prompt);
-    input_inner_reader(io::stdin().lock())
+    input_inner(prompt, io::stdout(), io::stdin().lock())
+}
+
+fn input_inner(prompt: &str, writer: impl Write, reader: impl BufRead) -> String {
+    input_inner_writer(writer, prompt);
+    input_inner_reader(reader)
 }
 
 fn input_inner_writer(mut writer: impl Write, prompt: &str) {
