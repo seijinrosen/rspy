@@ -1,3 +1,5 @@
+pub mod string;
+
 use std::io::{self, BufRead, Write};
 
 pub fn input(prompt: &str) -> String {
@@ -21,6 +23,8 @@ fn input_inner_reader(mut reader: impl BufRead) -> String {
 mod tests {
     use super::*;
 
+    use crate::string::{ASCII_LOWERCASE, ASCII_UPPERCASE};
+
     #[test]
     fn input_inner_writer_works() {
         let prompt = "プロンプトメッセージ: ";
@@ -37,5 +41,17 @@ mod tests {
         let user_input = b"I'm George\n";
         let result = input_inner_reader(&user_input[..]);
         assert_eq!(result, "I'm George");
+    }
+
+    #[test]
+    fn ascii_lowercase_exists() {
+        let result = ASCII_LOWERCASE;
+        assert_eq!(result, "abcdefghijklmnopqrstuvwxyz");
+    }
+
+    #[test]
+    fn ascii_uppercase_exists() {
+        let result = ASCII_UPPERCASE;
+        assert_eq!(result, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
     }
 }

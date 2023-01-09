@@ -18,6 +18,8 @@ rspy = "0"
 
 ## Currently available
 
-| Python | Rust        |
-| ------ | ----------- |
-| input  | rspy::input |
+| Python                 | Rust                          |
+| ---------------------- | ----------------------------- |
+| input                  | rspy::input                   |
+| string.ascii_lowercase | rspy::string::ASCII_LOWERCASE |
+| string.ascii_uppercase | rspy::string::ASCII_UPPERCASE |
