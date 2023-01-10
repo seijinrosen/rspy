@@ -16,7 +16,11 @@ clean:
 
 init:
 	poetry install
+	pre-commit install
 	direnv allow
+
+lint:
+	pre-commit run --all-files
 
 open:
 	gh repo view --web
