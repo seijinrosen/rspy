@@ -1,10 +1,15 @@
 {
   "words": [
+    "clippy",
     "cobertura",
     "codecov",
+    "direnv",
     "doctest",
+    "esbenp",
+    "nocapture",
     "Pythonic",
     "rspy",
-    "seijinrosen"
+    "seijinrosen",
+    "venv"
   ]
 }
