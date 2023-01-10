@@ -10,6 +10,9 @@ after-develop-merged:
 	git branch --delete develop
 	git switch --create develop
 
+bump-version:
+	cargo run --example bump_version
+
 clean:
 	rm -r node_modules/
 	rm -r target/
