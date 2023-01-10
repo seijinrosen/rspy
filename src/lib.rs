@@ -45,7 +45,6 @@ mod tests {
     use pretty_assertions::assert_eq;
 
     use crate as rspy;
-    use crate::string::{ASCII_LOWERCASE, ASCII_UPPERCASE};
 
     #[test]
     fn input_inner_writer_works() {
@@ -75,18 +74,6 @@ mod tests {
 
         assert_eq!(String::from_utf8(output).unwrap(), "プロンプトメッセージ: ");
         assert_eq!(result, "I'm George");
-    }
-
-    #[test]
-    fn ascii_lowercase_exists() {
-        let result = ASCII_LOWERCASE;
-        assert_eq!(result, "abcdefghijklmnopqrstuvwxyz");
-    }
-
-    #[test]
-    fn ascii_uppercase_exists() {
-        let result = ASCII_UPPERCASE;
-        assert_eq!(result, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
     }
 
     #[test]
