@@ -14,6 +14,9 @@ clean:
 	rm -r node_modules/
 	rm -r target/
 
+doc:
+	cargo doc -Zunstable-options -Zrustdoc-scrape-examples --open
+
 init:
 	poetry install
 	pre-commit install
