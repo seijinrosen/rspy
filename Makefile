@@ -2,7 +2,6 @@ test:
 	cargo check
 	cargo test -- --nocapture --color=always
 	cargo clippy
-	# cargo tarpaulin
 
 after-develop-merged:
 	git switch main
@@ -16,6 +15,9 @@ bump-version:
 clean:
 	rm -r node_modules/
 	rm -r target/
+
+coverage:
+	cargo tarpaulin
 
 doc:
 	cargo doc -Zunstable-options -Zrustdoc-scrape-examples --open
