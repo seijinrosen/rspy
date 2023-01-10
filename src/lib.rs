@@ -1,3 +1,5 @@
+//! Pythonic interface for Rust.
+
 pub mod string;
 
 use std::io::{self, BufRead, Write};
@@ -16,12 +18,16 @@ use std::io::{self, BufRead, Write};
 /// // `prompt` が空白で良い場合は、空文字列を渡してください。
 /// ```
 pub fn input(prompt: &str) -> String {
-    input_inner_writer(io::stdout(), prompt);
-    input_inner_reader(io::stdin().lock())
+    input_inner(prompt, io::stdout(), io::stdin().lock())
+}
+
+fn input_inner(prompt: &str, writer: impl Write, reader: impl BufRead) -> String {
+    input_inner_writer(writer, prompt);
+    input_inner_reader(reader)
 }
 
 fn input_inner_writer(mut writer: impl Write, prompt: &str) {
-    write!(&mut writer, "{}", prompt).unwrap();
+    write!(&mut writer, "{prompt}").unwrap();
     writer.flush().unwrap();
 }
 
@@ -36,7 +42,9 @@ fn input_inner_reader(mut reader: impl BufRead) -> String {
 mod tests {
     use super::*;
 
-    use crate::string::{ASCII_LOWERCASE, ASCII_UPPERCASE};
+    use pretty_assertions::assert_eq;
+
+    use crate as rspy;
 
     #[test]
     fn input_inner_writer_works() {
@@ -57,14 +65,22 @@ mod tests {
     }
 
     #[test]
-    fn ascii_lowercase_exists() {
-        let result = ASCII_LOWERCASE;
-        assert_eq!(result, "abcdefghijklmnopqrstuvwxyz");
+    fn input_inner_works() {
+        let prompt = "プロンプトメッセージ: ";
+        let mut output = Vec::new();
+        let user_input = b"I'm George\n";
+
+        let result = input_inner(prompt, &mut output, &user_input[..]);
+
+        assert_eq!(String::from_utf8(output).unwrap(), "プロンプトメッセージ: ");
+        assert_eq!(result, "I'm George");
     }
 
     #[test]
-    fn ascii_uppercase_exists() {
-        let result = ASCII_UPPERCASE;
-        assert_eq!(result, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    #[ignore = "since this is for doctest"]
+    #[allow(unused_variables)]
+    fn input_doc_test() {
+        let user_input = rspy::input("type here: ");
+        let user_input = rspy::input("");
     }
 }

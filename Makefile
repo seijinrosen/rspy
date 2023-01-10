@@ -1,6 +1,6 @@
 test:
 	cargo check
-	cargo test
+	cargo test -- --nocapture --color=always
 	cargo clippy
 	# cargo tarpaulin
 
@@ -14,8 +14,16 @@ clean:
 	rm -r node_modules/
 	rm -r target/
 
+doc:
+	cargo doc -Zunstable-options -Zrustdoc-scrape-examples --open
+
 init:
-	pnpm install
+	poetry install
+	pre-commit install
+	direnv allow
+
+lint:
+	pre-commit run --all-files
 
 open:
 	gh repo view --web
