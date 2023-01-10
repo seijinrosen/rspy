@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.11"
 
 [tool.poetry.group.dev.dependencies]
+bandit = "^1.7.4"
 pre-commit = "^2.21.0"
 
 [build-system]
