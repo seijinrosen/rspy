@@ -15,7 +15,8 @@ clean:
 	rm -r target/
 
 init:
-	pnpm install
+	poetry install
+	direnv allow
 
 open:
 	gh repo view --web
