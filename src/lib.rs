@@ -66,6 +66,18 @@ mod tests {
     }
 
     #[test]
+    fn input_inner_works() {
+        let prompt = "プロンプトメッセージ: ";
+        let mut output = Vec::new();
+        let user_input = b"I'm George\n";
+
+        let result = input_inner(prompt, &mut output, &user_input[..]);
+
+        assert_eq!(String::from_utf8(output).unwrap(), "プロンプトメッセージ: ");
+        assert_eq!(result, "I'm George");
+    }
+
+    #[test]
     fn ascii_lowercase_exists() {
         let result = ASCII_LOWERCASE;
         assert_eq!(result, "abcdefghijklmnopqrstuvwxyz");
