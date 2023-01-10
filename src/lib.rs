@@ -27,7 +27,7 @@ fn input_inner(prompt: &str, writer: impl Write, reader: impl BufRead) -> String
 }
 
 fn input_inner_writer(mut writer: impl Write, prompt: &str) {
-    write!(&mut writer, "{}", prompt).unwrap();
+    write!(&mut writer, "{prompt}").unwrap();
     writer.flush().unwrap();
 }
 
