@@ -1,6 +1,6 @@
 [package]
 name = "rspy"
-version = "0.1.3"
+version = "0.1.4"
 description = "Pythonic interface for Rust"
 repository = "https://github.com/seijinrosen/rspy"
 readme = "README.md"
@@ -13,14 +13,3 @@ edition = "2021"
 
 [dev-dependencies]
 pretty_assertions = "1.3.0"
-
-
-[package.metadata.docs.rs]
-features = ["unstable-doc"]
-rustdoc-args = ["--cfg", "docsrs"]
-cargo-args = ["-Zunstable-options", "-Zrustdoc-scrape-examples"]
-
-
-[[example]]
-name = "input"
-doc-scrape-examples = true
