@@ -13,3 +13,18 @@ edition = "2021"
 
 [dev-dependencies]
 pretty_assertions = "1.3.0"
+
+
+[[example]]
+name = "input"
+doc-scrape-examples = true
+
+
+[[example]]
+name = "string_constants"
+doc-scrape-examples = true
+
+
+[[example]]
+name = "string_enumerate"
+doc-scrape-examples = true
