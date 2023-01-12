@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.1.6
+
+- Impl enumerate: array, vector
+
 ## v0.1.5
 
 - Add string enumerate
