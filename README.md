@@ -20,7 +20,7 @@ rspy = "0"
 
 | Python                                                                                            | Rust                                                                                                   |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| [enumerate](https://docs.python.org/ja/3/library/functions.html#enumerate)                        | 現在は文字列のみ対応 <br> rspy::PyString::enumerate                                                    |
+| [enumerate](https://docs.python.org/ja/3/library/functions.html#enumerate)                        | rspy::Enumerator::enumerate                                                                            |
 | [input](https://docs.python.org/ja/3/library/functions.html#input)                                | [rspy::input](https://docs.rs/rspy/latest/rspy/fn.input.html)                                          |
 | [string.ascii_lowercase](https://docs.python.org/ja/3/library/string.html#string.ascii_lowercase) | [rspy::string::ASCII_LOWERCASE](https://docs.rs/rspy/latest/rspy/string/constant.ASCII_LOWERCASE.html) |
 | [string.ascii_uppercase](https://docs.python.org/ja/3/library/string.html#string.ascii_uppercase) | [rspy::string::ASCII_UPPERCASE](https://docs.rs/rspy/latest/rspy/string/constant.ASCII_UPPERCASE.html) |
