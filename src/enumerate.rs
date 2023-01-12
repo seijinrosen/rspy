@@ -1,4 +1,4 @@
-use std::str::Chars;
+use std::{slice::Iter, str::Chars};
 
 pub struct PyEnumerate<I> {
     iter: I,
@@ -56,6 +56,28 @@ impl PyString for str {
     }
 }
 
+pub trait PyList<T> {
+    type Item;
+
+    fn enumerate(&self, start: i32) -> PyEnumerate<Iter<T>>;
+}
+
+impl<T> PyList<T> for Vec<T> {
+    type Item = T;
+
+    fn enumerate(&self, start: i32) -> PyEnumerate<Iter<T>> {
+        PyEnumerate::new(self.iter(), start)
+    }
+}
+
+impl<T, const N: usize> PyList<T> for [T; N] {
+    type Item = T;
+
+    fn enumerate(&self, start: i32) -> PyEnumerate<Iter<T>> {
+        PyEnumerate::new(self.iter(), start)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -74,5 +96,23 @@ mod tests {
 
         assert_eq!(index_vec, [-3, -2, -1, 0, 1]);
         assert_eq!(char_vec, ['a', 'b', 'c', 'd', 'e']);
+    }
+
+    #[test]
+    fn vec_enumerate_works() {
+        let mut index_vec = vec![];
+        let mut int_vec = vec![];
+
+        let vec = vec![100, -100, 20, 50, -1000];
+
+        for (i, v) in vec.enumerate(-3) {
+            index_vec.push(i);
+            int_vec.push(v);
+        }
+
+        assert_eq!(index_vec, [-3, -2, -1, 0, 1]);
+        for (i, v) in vec.iter().enumerate() {
+            assert_eq!(int_vec[i], v);
+        }
     }
 }
