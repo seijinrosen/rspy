@@ -112,4 +112,22 @@ mod tests {
             assert_eq!(int_vec[i], v);
         }
     }
+
+    #[test]
+    fn arr_enumerate_works() {
+        let mut index_vec = vec![];
+        let mut int_vec = vec![];
+
+        let arr = [100, -100, 20, 50, -1000];
+
+        for (i, v) in arr.enumerate(-3) {
+            index_vec.push(i);
+            int_vec.push(v);
+        }
+
+        assert_eq!(index_vec, [-3, -2, -1, 0, 1]);
+        for (i, v) in arr.iter().enumerate() {
+            assert_eq!(int_vec[i], v);
+        }
+    }
 }
