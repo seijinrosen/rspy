@@ -24,3 +24,9 @@ rspy = "0"
 | [input](https://docs.python.org/ja/3/library/functions.html#input)                                | [rspy::input](https://docs.rs/rspy/latest/rspy/fn.input.html)                                          |
 | [string.ascii_lowercase](https://docs.python.org/ja/3/library/string.html#string.ascii_lowercase) | [rspy::string::ASCII_LOWERCASE](https://docs.rs/rspy/latest/rspy/string/constant.ASCII_LOWERCASE.html) |
 | [string.ascii_uppercase](https://docs.python.org/ja/3/library/string.html#string.ascii_uppercase) | [rspy::string::ASCII_UPPERCASE](https://docs.rs/rspy/latest/rspy/string/constant.ASCII_UPPERCASE.html) |
+
+## TODO
+
+- [pathlib.Path.mkdir][python.pathlib.path.mkdir]
+
+[python.pathlib.path.mkdir]: https://docs.python.org/ja/3/library/pathlib.html#pathlib.Path.mkdir
