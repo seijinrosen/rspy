@@ -10,4 +10,17 @@ fn main() {
     for (i, ch) in "abcde".enumerate(-3) {
         println!("{}: {}", i, ch);
     }
+
+    println!();
+
+    let s = "abcde".to_string();
+    for (i, ch) in s.enumerate(0) {
+        println!("{}: {}", i, ch);
+    }
+
+    println!();
+
+    for (i, ch) in rspy::PyString::enumerate("abcde", -3) {
+        println!("{}: {}", i, ch);
+    }
 }
