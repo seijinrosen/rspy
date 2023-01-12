@@ -1,4 +1,4 @@
-use rspy::PyList;
+use rspy::Enumerator;
 
 fn main() {
     let arr = [100, 30, -100, 2000, 50];

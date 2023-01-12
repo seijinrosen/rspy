@@ -3,8 +3,7 @@
 mod enumerate;
 pub mod string;
 
-pub use crate::enumerate::PyList;
-pub use crate::enumerate::PyString;
+pub use crate::enumerate::Enumerator;
 
 use std::io::{self, BufRead, Result, Write};
 

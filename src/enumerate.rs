@@ -24,8 +24,16 @@ where
     }
 }
 
-/// `str` を拡張するためのトレイト。
-pub trait PyString {
+/// `enumerate` を実装するためのトレイト。
+pub trait Enumerator<'a> {
+    type Item;
+
+    fn enumerate(&'a self, start: i32) -> PyEnumerate<Self::Item>;
+}
+
+impl<'a> Enumerator<'a> for str {
+    type Item = Chars<'a>;
+
     /// インデックス付きでイテレートします。
     ///
     /// Python とは異なり、`start` は 0 の場合でも必須です。
@@ -33,7 +41,7 @@ pub trait PyString {
     /// # Examples
     ///
     /// ```
-    /// use rspy::PyString;
+    /// use rspy::Enumerator;
     ///
     /// let mut index_vec = vec![];
     /// let mut char_vec = vec![];
@@ -46,34 +54,23 @@ pub trait PyString {
     /// assert_eq!(index_vec, [-3, -2, -1, 0, 1]);
     /// assert_eq!(char_vec, ['a', 'b', 'c', 'd', 'e']);
     /// ```
-    fn enumerate(&self, start: i32) -> PyEnumerate<Chars>;
-}
-
-impl PyString for str {
-    /// インデックス付きでイテレートします。
-    fn enumerate(&self, start: i32) -> PyEnumerate<Chars> {
+    fn enumerate(&'a self, start: i32) -> PyEnumerate<Self::Item> {
         PyEnumerate::new(self.chars(), start)
     }
 }
 
-pub trait PyList<T> {
-    type Item;
+impl<'a, T: 'a> Enumerator<'a> for Vec<T> {
+    type Item = Iter<'a, T>;
 
-    fn enumerate(&self, start: i32) -> PyEnumerate<Iter<T>>;
-}
-
-impl<T> PyList<T> for Vec<T> {
-    type Item = T;
-
-    fn enumerate(&self, start: i32) -> PyEnumerate<Iter<T>> {
+    fn enumerate(&'a self, start: i32) -> PyEnumerate<Self::Item> {
         PyEnumerate::new(self.iter(), start)
     }
 }
 
-impl<T, const N: usize> PyList<T> for [T; N] {
-    type Item = T;
+impl<'a, T: 'a, const N: usize> Enumerator<'a> for [T; N] {
+    type Item = Iter<'a, T>;
 
-    fn enumerate(&self, start: i32) -> PyEnumerate<Iter<T>> {
+    fn enumerate(&'a self, start: i32) -> PyEnumerate<Self::Item> {
         PyEnumerate::new(self.iter(), start)
     }
 }

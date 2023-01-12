@@ -1,4 +1,4 @@
-use rspy::PyString;
+use rspy::Enumerator;
 
 fn main() {
     for (i, ch) in "abcde".chars().enumerate() {
@@ -20,7 +20,7 @@ fn main() {
 
     println!();
 
-    for (i, ch) in rspy::PyString::enumerate("abcde", -3) {
+    for (i, ch) in rspy::Enumerator::enumerate("abcde", -3) {
         println!("{}: {}", i, ch);
     }
 }
