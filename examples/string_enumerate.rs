@@ -23,4 +23,11 @@ fn main() {
     for (i, ch) in rspy::Enumerator::enumerate("abcde", -3) {
         println!("{}: {}", i, ch);
     }
+
+    println!();
+
+    let s = "abcde".to_string();
+    for (i, ch) in Enumerator::enumerate(&s, -100) {
+        println!("{}: {}", i, ch);
+    }
 }
