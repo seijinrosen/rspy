@@ -59,6 +59,14 @@ impl<'a> Enumerator<'a> for str {
     }
 }
 
+impl<'a> Enumerator<'a> for String {
+    type Item = Chars<'a>;
+
+    fn enumerate(&'a self, start: i32) -> PyEnumerate<Self::Item> {
+        PyEnumerate::new(self.chars(), start)
+    }
+}
+
 impl<'a, T: 'a> Enumerator<'a> for Vec<T> {
     type Item = Iter<'a, T>;
 
