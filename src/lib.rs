@@ -1,6 +1,9 @@
 //! Pythonic interface for Rust.
 
+mod enumerate;
 pub mod string;
+
+pub use crate::enumerate::PyString;
 
 use std::io::{self, BufRead, Result, Write};
 
