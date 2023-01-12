@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.1.5
+
+- Add string enumerate
+
 ## v0.1.4
 
 - Add string constants example

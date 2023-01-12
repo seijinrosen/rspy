@@ -1,8 +1,11 @@
 //! Pythonic interface for Rust.
 
+mod enumerate;
 pub mod string;
 
-use std::io::{self, BufRead, Write};
+pub use crate::enumerate::PyString;
+
+use std::io::{self, BufRead, Result, Write};
 
 /// `prompt` を表示して、ユーザーに入力を促します。入力された文字列は、変数に保存されることが期待されます。
 ///
@@ -18,24 +21,25 @@ use std::io::{self, BufRead, Write};
 /// // `prompt` が空白で良い場合は、空文字列を渡してください。
 /// ```
 pub fn input(prompt: &str) -> String {
-    input_inner(prompt, io::stdout(), io::stdin().lock())
+    input_inner(prompt, io::stdout(), io::stdin().lock()).unwrap()
 }
 
-fn input_inner(prompt: &str, writer: impl Write, reader: impl BufRead) -> String {
-    input_inner_writer(writer, prompt);
+fn input_inner(prompt: &str, writer: impl Write, reader: impl BufRead) -> Result<String> {
+    input_inner_writer(writer, prompt)?;
     input_inner_reader(reader)
 }
 
-fn input_inner_writer(mut writer: impl Write, prompt: &str) {
-    write!(&mut writer, "{prompt}").unwrap();
-    writer.flush().unwrap();
+fn input_inner_writer(mut writer: impl Write, prompt: &str) -> Result<()> {
+    write!(&mut writer, "{prompt}")?;
+    writer.flush()?;
+    Ok(())
 }
 
-fn input_inner_reader(mut reader: impl BufRead) -> String {
+fn input_inner_reader(mut reader: impl BufRead) -> Result<String> {
     let mut buf = String::new();
-    reader.read_line(&mut buf).unwrap();
+    reader.read_line(&mut buf)?;
     buf.pop();
-    buf
+    Ok(buf)
 }
 
 #[cfg(test)]
@@ -50,9 +54,9 @@ mod tests {
     fn input_inner_writer_works() {
         let prompt = "プロンプトメッセージ: ";
         let mut output = Vec::new();
-        input_inner_writer(&mut output, prompt);
+        input_inner_writer(&mut output, prompt).unwrap();
         let result = String::from_utf8(output).unwrap();
-        assert_eq!(result, prompt);
+        assert_eq!(result, "プロンプトメッセージ: ");
     }
 
     #[test]
@@ -61,7 +65,7 @@ mod tests {
         // https://stackoverflow.com/a/28370712
         let user_input = b"I'm George\n";
         let result = input_inner_reader(&user_input[..]);
-        assert_eq!(result, "I'm George");
+        assert_eq!(result.unwrap(), "I'm George");
     }
 
     #[test]
@@ -73,7 +77,7 @@ mod tests {
         let result = input_inner(prompt, &mut output, &user_input[..]);
 
         assert_eq!(String::from_utf8(output).unwrap(), "プロンプトメッセージ: ");
-        assert_eq!(result, "I'm George");
+        assert_eq!(result.unwrap(), "I'm George");
     }
 
     #[test]
