@@ -4,16 +4,15 @@ use std::{iter::Zip, ops::Range, slice::Iter, str::Chars};
 pub trait Enumerator<'a> {
     type Item;
 
+    /// インデックス付きでイテレートします。
+    ///
+    /// Python とは異なり、`start` は 0 の場合でも必須です。
     fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item>;
 }
 
 impl<'a> Enumerator<'a> for str {
     type Item = Chars<'a>;
 
-    /// インデックス付きでイテレートします。
-    ///
-    /// Python とは異なり、`start` は 0 の場合でも必須です。
-    ///
     /// # Examples
     ///
     /// ```
