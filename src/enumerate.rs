@@ -1,34 +1,10 @@
-use std::{slice::Iter, str::Chars};
-
-pub struct PyEnumerate<I> {
-    iter: I,
-    count: i32,
-}
-impl<I> PyEnumerate<I> {
-    fn new(iter: I, start: i32) -> PyEnumerate<I> {
-        PyEnumerate { iter, count: start }
-    }
-}
-
-impl<I> Iterator for PyEnumerate<I>
-where
-    I: Iterator,
-{
-    type Item = (i32, <I as Iterator>::Item);
-
-    fn next(&mut self) -> Option<(i32, <I as Iterator>::Item)> {
-        let a = self.iter.next()?;
-        let i = self.count;
-        self.count += 1;
-        Some((i, a))
-    }
-}
+use std::{iter::Zip, ops::Range, slice::Iter, str::Chars};
 
 /// `enumerate` を実装するためのトレイト。
 pub trait Enumerator<'a> {
     type Item;
 
-    fn enumerate(&'a self, start: i32) -> PyEnumerate<Self::Item>;
+    fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item>;
 }
 
 impl<'a> Enumerator<'a> for str {
@@ -54,32 +30,32 @@ impl<'a> Enumerator<'a> for str {
     /// assert_eq!(index_vec, [-3, -2, -1, 0, 1]);
     /// assert_eq!(char_vec, ['a', 'b', 'c', 'd', 'e']);
     /// ```
-    fn enumerate(&'a self, start: i32) -> PyEnumerate<Self::Item> {
-        PyEnumerate::new(self.chars(), start)
+    fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
+        (start..self.len() as i32).zip(self.chars())
     }
 }
 
 impl<'a> Enumerator<'a> for String {
     type Item = Chars<'a>;
 
-    fn enumerate(&'a self, start: i32) -> PyEnumerate<Self::Item> {
-        PyEnumerate::new(self.chars(), start)
+    fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
+        (start..self.len() as i32).zip(self.chars())
     }
 }
 
 impl<'a, T: 'a> Enumerator<'a> for Vec<T> {
     type Item = Iter<'a, T>;
 
-    fn enumerate(&'a self, start: i32) -> PyEnumerate<Self::Item> {
-        PyEnumerate::new(self.iter(), start)
+    fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
+        (start..self.len() as i32).zip(self.iter())
     }
 }
 
 impl<'a, T: 'a, const N: usize> Enumerator<'a> for [T; N] {
     type Item = Iter<'a, T>;
 
-    fn enumerate(&'a self, start: i32) -> PyEnumerate<Self::Item> {
-        PyEnumerate::new(self.iter(), start)
+    fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
+        (start..self.len() as i32).zip(self.iter())
     }
 }
 
