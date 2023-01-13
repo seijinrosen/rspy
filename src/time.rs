@@ -19,3 +19,17 @@ use std::{thread, time::Duration};
 pub fn sleep(secs: u64) {
     thread::sleep(Duration::from_secs(secs));
 }
+
+#[cfg(test)]
+mod tests {
+    use crate as rspy;
+    use rspy::time::sleep;
+    use std::time::{Duration, Instant};
+
+    #[test]
+    fn sleep_works() {
+        let now = Instant::now();
+        sleep(1);
+        assert!(now.elapsed() >= Duration::from_secs(1));
+    }
+}
