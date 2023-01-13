@@ -8,3 +8,4 @@ cargo add --dev pretty_assertions
 poetry init
 poetry add --group=dev bandit
 poetry add --group=dev black
+cargo add --dev tempfile

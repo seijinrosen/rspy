@@ -1,5 +1,6 @@
 {
   "words": [
+    "builtins",
     "clippy",
     "cobertura",
     "codecov",
@@ -8,10 +9,12 @@
     "doctest",
     "esbenp",
     "nocapture",
+    "pathlib",
     "Pythonic",
     "rspy",
     "rustdoc",
     "seijinrosen",
+    "tempfile",
     "venv",
     "Zrustdoc",
     "Zunstable"
