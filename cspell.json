@@ -14,6 +14,7 @@
     "rspy",
     "rustdoc",
     "seijinrosen",
+    "tempfile",
     "venv",
     "Zrustdoc",
     "Zunstable"
