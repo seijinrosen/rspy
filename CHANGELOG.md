@@ -3,6 +3,8 @@
 ## v0.1.8
 
 - `enumerate` の範囲指定のバグを修正
+- Add pathlib::PyPath
+- Rename `Enumerator` -> `Iterable`
 
 ## v0.1.7
 

@@ -1,4 +1,4 @@
-use rspy::Enumerator;
+use rspy::Iterable;
 
 fn main() {
     let arr = [100, 30, -100, 2000, 50];
@@ -28,7 +28,7 @@ fn main() {
 
     println!();
 
-    for (i, v) in Enumerator::enumerate(&arr, -100) {
+    for (i, v) in Iterable::enumerate(&arr, -100) {
         println!("{}: {}", i, v);
     }
 

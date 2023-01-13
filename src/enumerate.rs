@@ -1,7 +1,7 @@
 use std::{iter::Zip, ops::Range, slice::Iter, str::Chars};
 
 /// `enumerate` を実装するためのトレイト。
-pub trait Enumerator<'a> {
+pub trait Iterable<'a> {
     type Item;
 
     /// インデックス付きでイテレートします。
@@ -10,13 +10,13 @@ pub trait Enumerator<'a> {
     fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item>;
 }
 
-impl<'a> Enumerator<'a> for str {
+impl<'a> Iterable<'a> for str {
     type Item = Chars<'a>;
 
     /// # Examples
     ///
     /// ```
-    /// use rspy::Enumerator;
+    /// use rspy::Iterable;
     ///
     /// let mut index_vec = vec![];
     /// let mut char_vec = vec![];
@@ -34,7 +34,7 @@ impl<'a> Enumerator<'a> for str {
     }
 }
 
-impl<'a> Enumerator<'a> for String {
+impl<'a> Iterable<'a> for String {
     type Item = Chars<'a>;
 
     fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
@@ -42,7 +42,7 @@ impl<'a> Enumerator<'a> for String {
     }
 }
 
-impl<'a, T: 'a> Enumerator<'a> for Vec<T> {
+impl<'a, T: 'a> Iterable<'a> for Vec<T> {
     type Item = Iter<'a, T>;
 
     fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
@@ -50,7 +50,7 @@ impl<'a, T: 'a> Enumerator<'a> for Vec<T> {
     }
 }
 
-impl<'a, T: 'a, const N: usize> Enumerator<'a> for [T; N] {
+impl<'a, T: 'a, const N: usize> Iterable<'a> for [T; N] {
     type Item = Iter<'a, T>;
 
     fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
