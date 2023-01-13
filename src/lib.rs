@@ -2,6 +2,7 @@
 
 mod enumerate;
 mod input;
+pub mod pathlib;
 pub mod string;
 pub mod time;
 
