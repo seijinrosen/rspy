@@ -1,8 +1,17 @@
+//! [Python の pathlib モジュール](https://docs.python.org/ja/3/library/pathlib.html) に対応するモジュール。
+
 use std::{fs, path::Path};
 
 use anyhow::{bail, Result};
 
+/// `mkdir` を実装するトレイト。
 pub trait PyPath {
+    /// ディレクトリを作成します。
+    ///
+    /// [Python の `Path.mkdir`](https://docs.python.org/ja/3/library/pathlib.html#pathlib.Path.mkdir) に相当しますが、以下の点が異なります。
+    ///
+    /// - `mode` 引数は実装されていません。
+    /// - `parents`, `exist_ok` は、ともに必須です。
     fn mkdir(&self, parents: bool, exist_ok: bool) -> Result<()>;
 }
 
