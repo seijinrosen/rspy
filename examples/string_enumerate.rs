@@ -1,4 +1,4 @@
-use rspy::Enumerator;
+use rspy::Iterable;
 
 fn main() {
     for (i, ch) in "abcde".chars().enumerate() {
@@ -20,14 +20,14 @@ fn main() {
 
     println!();
 
-    for (i, ch) in rspy::Enumerator::enumerate("abcde", -3) {
+    for (i, ch) in rspy::Iterable::enumerate("abcde", -3) {
         println!("{}: {}", i, ch);
     }
 
     println!();
 
     let s = "abcde".to_string();
-    for (i, ch) in Enumerator::enumerate(&s, -100) {
+    for (i, ch) in Iterable::enumerate(&s, -100) {
         println!("{}: {}", i, ch);
     }
 }

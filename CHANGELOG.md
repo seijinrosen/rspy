@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.1.8
+
+- `enumerate` の範囲指定のバグを修正
+- Add pathlib::PyPath::mkdir
+- Rename `Enumerator` -> `Iterable`
+
 ## v0.1.7
 
 - `PyEnumerate` を削除し、`enumerate` は `Zip` を返すように変更

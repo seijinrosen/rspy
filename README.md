@@ -20,15 +20,12 @@ rspy = "0"
 
 | Python                   | Rust                            |
 | ------------------------ | ------------------------------- |
-| [builtins.enumerate]     | [rspy::Enumerator::enumerate]   |
+| [builtins.enumerate]     | [rspy::Iterable::enumerate]     |
 | [builtins.input]         | [rspy::input]                   |
+| [pathlib.Path.mkdir]     | rspy::pathlib::PyPath::mkdir    |
 | [string.ascii_lowercase] | [rspy::string::ASCII_LOWERCASE] |
 | [string.ascii_uppercase] | [rspy::string::ASCII_UPPERCASE] |
-| [time.sleep]             | rspy::time::sleep               |
-
-## TODO
-
-- [pathlib.Path.mkdir]
+| [time.sleep]             | [rspy::time::sleep]             |
 
 [builtins.enumerate]: https://docs.python.org/ja/3/library/functions.html#enumerate
 [builtins.input]: https://docs.python.org/ja/3/library/functions.html#input
@@ -36,7 +33,8 @@ rspy = "0"
 [string.ascii_lowercase]: https://docs.python.org/ja/3/library/string.html#string.ascii_lowercase
 [string.ascii_uppercase]: https://docs.python.org/ja/3/library/string.html#string.ascii_uppercase
 [time.sleep]: https://docs.python.org/ja/3/library/time.html#time.sleep
-[rspy::enumerator::enumerate]: https://docs.rs/rspy/latest/rspy/trait.Enumerator.html#tymethod.enumerate
+[rspy::iterable::enumerate]: https://docs.rs/rspy/latest/rspy/trait.Iterable.html#tymethod.enumerate
 [rspy::input]: https://docs.rs/rspy/latest/rspy/fn.input.html
 [rspy::string::ascii_lowercase]: https://docs.rs/rspy/latest/rspy/string/constant.ASCII_LOWERCASE.html
 [rspy::string::ascii_uppercase]: https://docs.rs/rspy/latest/rspy/string/constant.ASCII_UPPERCASE.html
+[rspy::time::sleep]: https://docs.rs/rspy/latest/rspy/time/fn.sleep.html
