@@ -22,13 +22,10 @@ rspy = "0"
 | ------------------------ | ------------------------------- |
 | [builtins.enumerate]     | [rspy::Iterable::enumerate]     |
 | [builtins.input]         | [rspy::input]                   |
+| [pathlib.Path.mkdir]     | rspy::pathlib::PyPath::mkdir    |
 | [string.ascii_lowercase] | [rspy::string::ASCII_LOWERCASE] |
 | [string.ascii_uppercase] | [rspy::string::ASCII_UPPERCASE] |
 | [time.sleep]             | [rspy::time::sleep]             |
-
-## TODO
-
-- [pathlib.Path.mkdir]
 
 [builtins.enumerate]: https://docs.python.org/ja/3/library/functions.html#enumerate
 [builtins.input]: https://docs.python.org/ja/3/library/functions.html#input
