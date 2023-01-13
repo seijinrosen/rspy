@@ -66,11 +66,27 @@ mod tests {
     use pretty_assertions::assert_eq;
 
     #[test]
-    fn enumerate_works() {
+    fn str_enumerate_works() {
         let mut index_vec = vec![];
         let mut char_vec = vec![];
 
         for (i, ch) in "abcde".enumerate(-3) {
+            index_vec.push(i);
+            char_vec.push(ch);
+        }
+
+        assert_eq!(index_vec, [-3, -2, -1, 0, 1]);
+        assert_eq!(char_vec, ['a', 'b', 'c', 'd', 'e']);
+    }
+
+    #[test]
+    fn string_enumerate_works() {
+        let mut index_vec = vec![];
+        let mut char_vec = vec![];
+
+        let s = "abcde".to_string();
+
+        for (i, ch) in s.enumerate(-3) {
             index_vec.push(i);
             char_vec.push(ch);
         }
