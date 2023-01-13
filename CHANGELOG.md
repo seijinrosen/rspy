@@ -3,6 +3,7 @@
 ## v0.1.7
 
 - `PyEnumerate` を削除し、`enumerate` は `Zip` を返すように変更
+- Add time::sleep
 
 ## v0.1.6
 

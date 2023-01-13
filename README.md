@@ -24,6 +24,7 @@ rspy = "0"
 | [builtins.input]         | [rspy::input]                   |
 | [string.ascii_lowercase] | [rspy::string::ASCII_LOWERCASE] |
 | [string.ascii_uppercase] | [rspy::string::ASCII_UPPERCASE] |
+| [time.sleep]             | rspy::time::sleep               |
 
 ## TODO
 
@@ -34,6 +35,7 @@ rspy = "0"
 [pathlib.path.mkdir]: https://docs.python.org/ja/3/library/pathlib.html#pathlib.Path.mkdir
 [string.ascii_lowercase]: https://docs.python.org/ja/3/library/string.html#string.ascii_lowercase
 [string.ascii_uppercase]: https://docs.python.org/ja/3/library/string.html#string.ascii_uppercase
+[time.sleep]: https://docs.python.org/ja/3/library/time.html#time.sleep
 [rspy::enumerator::enumerate]: https://docs.rs/rspy/latest/rspy/trait.Enumerator.html#tymethod.enumerate
 [rspy::input]: https://docs.rs/rspy/latest/rspy/fn.input.html
 [rspy::string::ascii_lowercase]: https://docs.rs/rspy/latest/rspy/string/constant.ASCII_LOWERCASE.html
