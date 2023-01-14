@@ -1,3 +1,4 @@
+use rspy::enumerate;
 use rspy::Iterable;
 
 fn main() {
@@ -28,6 +29,12 @@ fn main() {
 
     let s = "abcde".to_string();
     for (i, ch) in Iterable::enumerate(&s, -100) {
+        println!("{}: {}", i, ch);
+    }
+
+    println!();
+
+    for (i, ch) in enumerate(&s, 10000) {
         println!("{}: {}", i, ch);
     }
 }

@@ -1,8 +1,15 @@
 use std::{iter::Zip, ops::Range, slice::Iter, str::Chars};
 
+pub fn enumerate<T>(iterable: &T, start: i32) -> Zip<Range<i32>, <T as Iterable<'_>>::Item>
+where
+    T: for<'a> Iterable<'a>,
+{
+    iterable.enumerate(start)
+}
+
 /// `enumerate` を実装するためのトレイト。
 pub trait Iterable<'a> {
-    type Item;
+    type Item: Iterator;
 
     /// インデックス付きでイテレートします。
     ///
@@ -191,6 +198,24 @@ mod tests {
         }
 
         assert_eq!(index_vec, [3, 4, 5, 6, 7]);
+        for (i, v) in arr.iter().enumerate() {
+            assert_eq!(int_vec[i], v);
+        }
+    }
+
+    #[test]
+    fn bare_enumerate() {
+        let mut index_vec = vec![];
+        let mut int_vec = vec![];
+
+        let arr = [100, -100, 20, 50, -1000];
+
+        for (i, v) in enumerate(&arr, 100) {
+            index_vec.push(i);
+            int_vec.push(v);
+        }
+
+        assert_eq!(index_vec, [100, 101, 102, 103, 104]);
         for (i, v) in arr.iter().enumerate() {
             assert_eq!(int_vec[i], v);
         }
