@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.1.10
+
+- Add `rspy::Iterable::sorted`
+
 ## v0.1.9
 
 - Add `rspy::enumerate` (function way)

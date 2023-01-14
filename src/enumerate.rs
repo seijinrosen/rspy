@@ -31,18 +31,31 @@ where
     iterable.enumerate(start)
 }
 
-/// `enumerate` を実装するためのトレイト。
+/// `enumerate`, `sorted` を実装するためのトレイト。
 pub trait Iterable<'a> {
     type Item: Iterator;
+    type SortedVec;
 
     /// インデックス付きでイテレートします。
     ///
     /// Python とは異なり、`start` は 0 の場合でも必須です。
     fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item>;
+
+    fn sorted(&self) -> Self::SortedVec;
+}
+
+fn inner_sort_str(s: &str) -> Vec<char> {
+    let mut vec = vec![];
+    for ch in s.chars() {
+        vec.push(ch);
+    }
+    vec.sort();
+    vec
 }
 
 impl<'a> Iterable<'a> for str {
     type Item = Chars<'a>;
+    type SortedVec = Vec<char>;
 
     /// # Examples
     ///
@@ -63,37 +76,71 @@ impl<'a> Iterable<'a> for str {
     fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
         (start..start + self.len() as i32).zip(self.chars())
     }
+
+    fn sorted(&self) -> Self::SortedVec {
+        inner_sort_str(self)
+    }
 }
 
 impl<'a> Iterable<'a> for &str {
     type Item = Chars<'a>;
+    type SortedVec = Vec<char>;
 
     fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
         (start..start + self.len() as i32).zip(self.chars())
+    }
+
+    fn sorted(&self) -> Self::SortedVec {
+        inner_sort_str(self)
     }
 }
 
 impl<'a> Iterable<'a> for String {
     type Item = Chars<'a>;
+    type SortedVec = Vec<char>;
 
     fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
         (start..start + self.len() as i32).zip(self.chars())
     }
+
+    fn sorted(&self) -> Self::SortedVec {
+        inner_sort_str(self)
+    }
 }
 
-impl<'a, T: 'a> Iterable<'a> for Vec<T> {
+impl<'a, T: 'a> Iterable<'a> for Vec<T>
+where
+    T: Clone + Ord,
+{
     type Item = Iter<'a, T>;
+    type SortedVec = Vec<T>;
 
     fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
         (start..start + self.len() as i32).zip(self.iter())
     }
+
+    fn sorted(&self) -> Self::SortedVec {
+        let mut result = self.to_vec();
+        result.sort();
+        result
+    }
 }
 
-impl<'a, T: 'a, const N: usize> Iterable<'a> for [T; N] {
+impl<'a, T: 'a, const N: usize> Iterable<'a> for [T; N]
+where
+    T: Clone + Ord,
+{
     type Item = Iter<'a, T>;
+    type SortedVec = Vec<T>;
 
     fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
         (start..start + self.len() as i32).zip(self.iter())
+    }
+
+    fn sorted(&self) -> Self::SortedVec {
+        let mut result = self.to_vec();
+        result.sort();
+        result
     }
 }
 
