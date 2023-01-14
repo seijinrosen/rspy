@@ -10,6 +10,7 @@
     "esbenp",
     "nocapture",
     "pathlib",
+    "pypath",
     "Pythonic",
     "rspy",
     "rustdoc",

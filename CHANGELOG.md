@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.1.9
+
+- Add `rspy::enumerate` (function way)
+
 ## v0.1.8
 
 - `enumerate` の範囲指定のバグを修正

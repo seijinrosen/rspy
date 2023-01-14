@@ -1,3 +1,4 @@
+use rspy::enumerate;
 use rspy::Iterable;
 
 fn main() {
@@ -35,6 +36,12 @@ fn main() {
     println!();
 
     for (i, v) in arr.enumerate(3) {
+        println!("{}: {}", i, v);
+    }
+
+    println!();
+
+    for (i, v) in enumerate(&vec, 3) {
         println!("{}: {}", i, v);
     }
 }
