@@ -1,8 +1,8 @@
 use std::{iter::Zip, ops::Range, slice::Iter, str::Chars};
 
-pub fn enumerate<T>(iterable: &T, start: i32) -> Zip<Range<i32>, <T as Iterable<'_>>::Item>
+pub fn enumerate<'a, T>(iterable: &'a T, start: i32) -> Zip<Range<i32>, T::Item>
 where
-    T: for<'a> Iterable<'a>,
+    T: Iterable<'a>,
 {
     iterable.enumerate(start)
 }
@@ -36,6 +36,14 @@ impl<'a> Iterable<'a> for str {
     /// assert_eq!(index_vec, [-3, -2, -1, 0, 1]);
     /// assert_eq!(char_vec, ['a', 'b', 'c', 'd', 'e']);
     /// ```
+    fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
+        (start..start + self.len() as i32).zip(self.chars())
+    }
+}
+
+impl<'a> Iterable<'a> for &str {
+    type Item = Chars<'a>;
+
     fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
         (start..start + self.len() as i32).zip(self.chars())
     }
