@@ -5,35 +5,35 @@ use std::{fs, path::Path};
 use anyhow::{bail, Result};
 
 /// `mkdir` を実装するトレイト。
-pub trait PyPath {
+pub trait PyPath: AsRef<Path> {
     /// ディレクトリを作成します。
     ///
     /// [Python の `Path.mkdir`](https://docs.python.org/ja/3/library/pathlib.html#pathlib.Path.mkdir) に相当しますが、以下の点が異なります。
     ///
     /// - `mode` 引数は実装されていません。
     /// - `parents`, `exist_ok` は、ともに必須です。
-    fn mkdir(&self, parents: bool, exist_ok: bool) -> Result<()>;
-}
-
-impl PyPath for Path {
     fn mkdir(&self, parents: bool, exist_ok: bool) -> Result<()> {
-        if !exist_ok && self.exists() {
-            bail!("File exists: '{}'", self.display());
+        let path = self.as_ref();
+
+        if !exist_ok && path.exists() {
+            bail!("File exists: '{}'", path.display());
         }
 
-        if exist_ok && self.is_dir() {
+        if exist_ok && path.is_dir() {
             return Ok(());
         }
 
         if parents {
-            fs::create_dir_all(self)?;
+            fs::create_dir_all(path)?;
         } else {
-            fs::create_dir(self)?;
+            fs::create_dir(path)?;
         }
 
         Ok(())
     }
 }
+
+impl PyPath for Path {}
 
 #[cfg(test)]
 mod tests {
