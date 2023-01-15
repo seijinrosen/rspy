@@ -1,6 +1,6 @@
 [package]
 name = "rspy"
-version = "0.1.9"
+version = "0.1.10"
 description = "Pythonic interface for Rust"
 repository = "https://github.com/seijinrosen/rspy"
 readme = "README.md"

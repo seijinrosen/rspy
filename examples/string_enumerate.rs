@@ -37,4 +37,11 @@ fn main() {
     for (i, ch) in enumerate(&s, 10000) {
         println!("{}: {}", i, ch);
     }
+
+    println!();
+
+    let s = "abcde";
+    for (i, ch) in enumerate(&s, 0) {
+        println!("{}: {}", i, ch);
+    }
 }
