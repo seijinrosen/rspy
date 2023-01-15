@@ -20,6 +20,24 @@ where
     }
 }
 
+impl<'a, T: 'a> Iterable<'a> for &Vec<T>
+where
+    T: Clone + Ord,
+{
+    type Item = Iter<'a, T>;
+    type SortedItems = Vec<T>;
+
+    fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
+        (start..start + self.len() as i32).zip(self.iter())
+    }
+
+    fn sorted(&self) -> Self::SortedItems {
+        let mut result = self.to_vec();
+        result.sort();
+        result
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
