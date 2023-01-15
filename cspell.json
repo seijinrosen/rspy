@@ -8,6 +8,7 @@
     "direnv",
     "docsrs",
     "doctest",
+    "edcba",
     "esbenp",
     "nocapture",
     "pathlib",

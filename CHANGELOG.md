@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.1.11
+
+- Add function: `rspy::sorted`
+- Add trait: `rspy::Reversed`
+- Add function: `rspy::reversed`
+
 ## v0.1.10
 
 - Add `rspy::Iterable::sorted`

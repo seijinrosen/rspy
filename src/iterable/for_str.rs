@@ -63,6 +63,19 @@ impl<'a> Iterable<'a> for String {
     }
 }
 
+impl<'a> Iterable<'a> for &String {
+    type Item = Chars<'a>;
+    type SortedItems = String;
+
+    fn enumerate(&'a self, start: i32) -> Zip<Range<i32>, Self::Item> {
+        (start..start + self.len() as i32).zip(self.chars())
+    }
+
+    fn sorted(&self) -> Self::SortedItems {
+        inner_sort_str(self)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
