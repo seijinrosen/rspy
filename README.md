@@ -23,6 +23,7 @@ rspy = "0"
 | [builtins.enumerate]     | [rspy::Iterable::enumerate] (trait way) |
 |                          | [rspy::enumerate] (function way)        |
 | [builtins.input]         | [rspy::input]                           |
+| [builtins.reversed]      | rspy::Reversed (trait way)              |
 | [builtins.sorted]        | [rspy::Iterable::sorted] (trait way)    |
 |                          | [rspy::sorted] (function way)           |
 | [pathlib.Path.mkdir]     | [rspy::pathlib::PyPath::mkdir]          |
@@ -32,6 +33,7 @@ rspy = "0"
 
 [builtins.enumerate]: https://docs.python.org/ja/3/library/functions.html#enumerate
 [builtins.input]: https://docs.python.org/ja/3/library/functions.html#input
+[builtins.reversed]: https://docs.python.org/ja/3/library/functions.html#reversed
 [builtins.sorted]: https://docs.python.org/ja/3/library/functions.html#sorted
 [pathlib.path.mkdir]: https://docs.python.org/ja/3/library/pathlib.html#pathlib.Path.mkdir
 [string.ascii_lowercase]: https://docs.python.org/ja/3/library/string.html#string.ascii_lowercase

@@ -2,7 +2,8 @@
 
 ## v0.1.11
 
-- Add `rspy::sorted`
+- Add function: `rspy::sorted`
+- Add trait: `rspy::Reversed`
 
 ## v0.1.10
 
