@@ -23,7 +23,7 @@ rspy = "0"
 | [builtins.enumerate]     | [rspy::Iterable::enumerate] (trait way) |
 |                          | [rspy::enumerate] (function way)        |
 | [builtins.input]         | [rspy::input]                           |
-| [builtins.sorted]        | rspy::Iterable::sorted (trait way)      |
+| [builtins.sorted]        | [rspy::Iterable::sorted] (trait way)    |
 | [pathlib.Path.mkdir]     | [rspy::pathlib::PyPath::mkdir]          |
 | [string.ascii_lowercase] | [rspy::string::ASCII_LOWERCASE]         |
 | [string.ascii_uppercase] | [rspy::string::ASCII_UPPERCASE]         |
@@ -36,9 +36,10 @@ rspy = "0"
 [string.ascii_lowercase]: https://docs.python.org/ja/3/library/string.html#string.ascii_lowercase
 [string.ascii_uppercase]: https://docs.python.org/ja/3/library/string.html#string.ascii_uppercase
 [time.sleep]: https://docs.python.org/ja/3/library/time.html#time.sleep
-[rspy::iterable::enumerate]: https://docs.rs/rspy/latest/rspy/trait.Iterable.html#tymethod.enumerate
 [rspy::enumerate]: https://docs.rs/rspy/latest/rspy/fn.enumerate.html
 [rspy::input]: https://docs.rs/rspy/latest/rspy/fn.input.html
+[rspy::iterable::enumerate]: https://docs.rs/rspy/latest/rspy/trait.Iterable.html#tymethod.enumerate
+[rspy::iterable::sorted]: https://docs.rs/rspy/latest/rspy/trait.Iterable.html#tymethod.sorted
 [rspy::pathlib::pypath::mkdir]: https://docs.rs/rspy/latest/rspy/pathlib/trait.PyPath.html#tymethod.mkdir
 [rspy::string::ascii_lowercase]: https://docs.rs/rspy/latest/rspy/string/constant.ASCII_LOWERCASE.html
 [rspy::string::ascii_uppercase]: https://docs.rs/rspy/latest/rspy/string/constant.ASCII_UPPERCASE.html
