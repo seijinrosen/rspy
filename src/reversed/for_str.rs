@@ -8,6 +8,30 @@ impl Reversed for str {
     }
 }
 
+impl Reversed for &str {
+    type Item = String;
+
+    fn reversed(&self) -> Self::Item {
+        self.chars().rev().collect()
+    }
+}
+
+impl Reversed for String {
+    type Item = String;
+
+    fn reversed(&self) -> Self::Item {
+        self.chars().rev().collect()
+    }
+}
+
+impl Reversed for &String {
+    type Item = String;
+
+    fn reversed(&self) -> Self::Item {
+        self.chars().rev().collect()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

@@ -13,6 +13,19 @@ where
     }
 }
 
+impl<T> Reversed for &Vec<T>
+where
+    T: Clone,
+{
+    type Item = Vec<T>;
+
+    fn reversed(&self) -> Self::Item {
+        let mut result = self.to_vec();
+        result.reverse();
+        result
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
