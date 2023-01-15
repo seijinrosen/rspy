@@ -128,4 +128,18 @@ mod tests {
         assert_eq!(index_vec, [3, 4, 5, 6, 7]);
         assert_eq!(char_vec, ['a', 'b', 'c', 'd', 'e']);
     }
+
+    #[test]
+    fn str_sorted_works() {
+        let s = "cbdae";
+        let result = s.sorted();
+        assert_eq!(result, "abcde");
+    }
+
+    #[test]
+    fn string_sorted_works() {
+        let s = "cbdae".to_string();
+        let result = s.sorted();
+        assert_eq!(result, "abcde");
+    }
 }

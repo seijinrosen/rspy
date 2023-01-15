@@ -61,4 +61,11 @@ mod tests {
             assert_eq!(int_vec[i], v);
         }
     }
+
+    #[test]
+    fn sorted_works() {
+        let array = [100, 20, -2000, 60, 0];
+        let result = array.sorted();
+        assert_eq!(result, [-2000, 0, 20, 60, 100]);
+    }
 }
