@@ -24,6 +24,7 @@ rspy = "0"
 |                          | [rspy::enumerate] (function way)        |
 | [builtins.input]         | [rspy::input]                           |
 | [builtins.sorted]        | [rspy::Iterable::sorted] (trait way)    |
+|                          | [rspy::sorted] (function way)           |
 | [pathlib.Path.mkdir]     | [rspy::pathlib::PyPath::mkdir]          |
 | [string.ascii_lowercase] | [rspy::string::ASCII_LOWERCASE]         |
 | [string.ascii_uppercase] | [rspy::string::ASCII_UPPERCASE]         |
@@ -41,6 +42,7 @@ rspy = "0"
 [rspy::iterable::enumerate]: https://docs.rs/rspy/latest/rspy/trait.Iterable.html#tymethod.enumerate
 [rspy::iterable::sorted]: https://docs.rs/rspy/latest/rspy/trait.Iterable.html#tymethod.sorted
 [rspy::pathlib::pypath::mkdir]: https://docs.rs/rspy/latest/rspy/pathlib/trait.PyPath.html#tymethod.mkdir
+[rspy::sorted]: https://docs.rs/rspy/latest/rspy/fn.sorted.html
 [rspy::string::ascii_lowercase]: https://docs.rs/rspy/latest/rspy/string/constant.ASCII_LOWERCASE.html
 [rspy::string::ascii_uppercase]: https://docs.rs/rspy/latest/rspy/string/constant.ASCII_UPPERCASE.html
 [rspy::time::sleep]: https://docs.rs/rspy/latest/rspy/time/fn.sleep.html

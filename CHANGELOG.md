@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.1.11
+
+- Add `rspy::sorted`
+
 ## v0.1.10
 
 - Add `rspy::Iterable::sorted`
