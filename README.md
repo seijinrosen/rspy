@@ -23,7 +23,7 @@ rspy = "0"
 | [builtins.enumerate]     | [rspy::Iterable::enumerate] (trait way) |
 |                          | [rspy::enumerate] (function way)        |
 | [builtins.input]         | [rspy::input]                           |
-| [builtins.reversed]      | rspy::Reversed (trait way)              |
+| [builtins.reversed]      | [rspy::Reversed::reversed] (trait way)  |
 |                          | [rspy::reversed] (function way)         |
 | [builtins.sorted]        | [rspy::Iterable::sorted] (trait way)    |
 |                          | [rspy::sorted] (function way)           |
@@ -45,6 +45,7 @@ rspy = "0"
 [rspy::iterable::enumerate]: https://docs.rs/rspy/latest/rspy/trait.Iterable.html#tymethod.enumerate
 [rspy::iterable::sorted]: https://docs.rs/rspy/latest/rspy/trait.Iterable.html#tymethod.sorted
 [rspy::pathlib::pypath::mkdir]: https://docs.rs/rspy/latest/rspy/pathlib/trait.PyPath.html#tymethod.mkdir
+[rspy::reversed::reversed]: https://docs.rs/rspy/latest/rspy/trait.Reversed.html#tymethod.reversed
 [rspy::reversed]: https://docs.rs/rspy/latest/rspy/fn.reversed.html
 [rspy::sorted]: https://docs.rs/rspy/latest/rspy/fn.sorted.html
 [rspy::string::ascii_lowercase]: https://docs.rs/rspy/latest/rspy/string/constant.ASCII_LOWERCASE.html
